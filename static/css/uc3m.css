@@ -1,0 +1,83 @@
+.pie {
+  background-color:rgb(0,14,120);
+  height:70px;
+  width:100%; 
+  position:absolute; 
+  z-index:999;
+  left: 0;
+  right: 0;
+}
+.uc3m-header{
+  background-color:rgb(0,14,120);
+  width: 100%;
+}
+.pie-de{
+  background-color:rgb(0,14,120);
+  float:right;
+}
+.pie-iz{
+  background-color:rgb(0,14,120);
+  float:left;
+  width:300px;
+}
+.wrapper-course-material ol.course-tabs li a:hover {
+  background-color: #8f7857;
+  color: #ffffff;
+}
+
+body.view-incourse .wrapper-footer {
+  margin-top: -10px;
+  padding-right: 0px;
+  padding-left: 10px;
+}
+
+footer {
+  margin-top: 5px;
+}
+
+nav.nav-colophon li {
+    display: inline;
+    padding-left: 20px;
+}
+
+.view-login .container {
+    border-left: 1px solid #000E78;
+    border-right: 1px solid #000E78;
+    width: 962px;
+}
+.view-login .introduction {
+    border-left: 1px solid #000E78;
+    border-right: 1px solid #000E78;
+    width: 962px;
+}
+
+.view-login .wrapper-footer footer {
+    width: 99%;
+}
+
+.home {
+     height: 650px;
+}
+
+.home > header .title {
+    padding: 16px 130px;
+    margin-right: 0px;
+    background: rgba(255,255,255,0.7);
+}
+.home > header .outer-wrapper {
+    padding-top: 150px;
+    min-height: 320px;
+}
+
+.content-wrapper {
+    padding-bottom: 1px;
+}
+
+.wrapper-footer {
+   padding: 5px 10px 5px;
+   margin-top: 2px;
+}
+
+.xmodule_display.xmodule_CapaModule .problem .capa_inputtype.textline input {
+   min-width: 20px;
+}

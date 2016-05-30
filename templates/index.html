@@ -1,0 +1,112 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+
+from openedx.core.djangolib.markup import Text, HTML
+%>
+
+<main id="main" aria-label="Content" tabindex="-1">
+    <section class="home">
+      <header id="bg-body">
+        <div class="outer-wrapper">
+          % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+          <div class="title">
+            <div class="heading-group">
+            </div>
+              <div class="course-search">
+                <form method="get" action="/courses">
+                  <label><span class="sr">${_("Search for a course")}</span>
+                    <input class="search-input" name="search_query" type="text" placeholder="${_("Search for a course")}"></input>
+                  </label>
+                  <button class="search-button" type="submit">
+                    <i class="icon fa fa-search" aria-hidden="true"></i><span class="sr">${_("Search")}</span>
+                  </button>
+                </form>
+              </div>
+
+          </div>
+
+          % if show_homepage_promo_video:
+            <a href="#video-modal" class="media" rel="leanModal">
+              <div class="hero">
+                <div class="play-intro"></div>
+              </div>
+            </a>
+          % endif
+        % endif
+        </div>
+
+        <div style="background:rgba(0,0,0,0.6); min-height:100px;diplay:float;font-size:4em;color: #FFF; text-align: center;">
+           <div style="padding-top:40px;vertical-align:bottom;min-height:80px; "> <b>Cursos 0 UC3M</b></div>
+        </div>
+
+      </header>
+      % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+         <%include file="${courses_list}" />
+      % endif
+
+    </section>
+</main>
+
+% if show_homepage_promo_video:
+  <section id="video-modal" class="modal home-page-video-modal video-modal">
+    <div class="inner-wrapper">
+      <iframe title="YouTube Video" width="640" height="360" src="//www.youtube.com/embed/${homepage_promo_video_youtube_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+% endif
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+
+
+   <script src="${static.url('themes/cursos0theme/js/jquery.backstretch.min.js')}"></script>
+
+    <script>
+
+
+      var images=[
+       "${static.url('themes/cursos0theme/images/slider1.jpg')}",
+       "${static.url('themes/cursos0theme/images/slider2.jpg')}",
+       "${static.url('themes/cursos0theme/images/slider3.jpg')}",
+       "${static.url('themes/cursos0theme/images/slider4.jpg')}",
+       ];
+
+
+      var index = 0,oldIndex;
+      index = Math.floor((Math.random()*images.length));
+      $('#bg-body').backstretch(images[index], {
+            duration: 4000,
+            fade: 850
+       });
+
+
+      setInterval(function() {
+        oldIndex = index;
+        while (oldIndex == index) {
+            index = Math.floor((Math.random()*images.length));
+        }
+        $('#bg-body').backstretch(images[index]);
+      }, 7500);
+
+
+    </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif
+
