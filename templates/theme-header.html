@@ -9,3 +9,8 @@
   <img src="${static.url('themes/cursos0theme/images/bannerUC3M.png')}" height="50" alt="Home Page" />
 </%block>
 
+%if settings.FEATURES.get('ENABLE_SYSADMIN_DASHBOARD','') and user.is_staff:
+  <li>
+	<a href="${reverse('sysadmin')}">Sysadmin</a>
+  </li>
+%endif
